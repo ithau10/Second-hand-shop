@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checkout</title>
+</head>
+<body>
+	<h1>Checkout</h1>
+	<p>Total Amount: {{ total_amt }}</p>
+	<form method="POST" action="{% url 'payment_processing' %}">
+		{% csrf_token %}
+		<label for="phone_number">Phone Number:</label>
+		<input type="text" name="phone_number" id="phone_number" required>
+		<label for="amount">Amount:</label>
+		<input type="number" name="amount" id="amount" value="{{ total_amt }}" required>
+		<button type="submit">Pay with Mpesa</button>
+	</form>
+</body>
+</html>

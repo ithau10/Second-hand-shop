@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gift-Thrift Shop</title>
+	<link rel="icon" href="{% static "media/images/GTLogo/favicon.ico" %}">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.min.css' %}" />
+	<!-- Bootstrap 4 CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'bs4/bootstrap.min.css' %}" />
+	<!-- Main Jquery -->
+	<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+	<!-- Bootstrap 4 JS -->
+	<link rel="stylesheet" href="{% static "fontawesome-free/css/all.min.css" %}">	<!-- font awesome -->
+	<script type="text/javascript" src="{% static 'bs4/bootstrap.min.js' %}"></script>
+	<!-- CustomJs -->
+	<link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}" />
+	<script type="text/javascript" src="{% static 'custom.js' %}"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-danger" >
+		<div class="container" >
+		  <a class="navbar-brand" href="/">Gift-Thrift  Shop</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+		  	<form class="form-inline my-2 my-lg-0" action="/search">
+		      <div class="input-group">
+				  <input name="q" type="text" class="form-control" placeholder="search" />
+				  <div class="input-group-append">
+				    <button class="btn btn-dark" type="submit" id="button-addon2">Search</button>
+				  </div>
+				</div>
+		    </form>
+		    <ul class="navbar-nav ml-auto">
+		      <li class="nav-item">
+		        <a class="nav-link text-white" href="/">Home</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link text-white" href="{% url 'category-list' %}">Categories</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link text-white" href="{% url 'brand-list' %}">Brand</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link text-white" href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart (<span class="cart-list">{{request.session.cartdata|length}}</span>)</a>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          <i class="fa fa-user"></i> My Account
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		        {% if user.is_authenticated %}
+		        	<a class="dropdown-item" href="{% url 'my_dashboard' %}">Dashboard</a>
+		        	<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+	        	{% else %}
+	        		<a class="dropdown-item" href="{% url 'login' %}">Login</a>
+		          <a class="dropdown-item" href="{% url 'signup' %}">Signup</a>
+		        {% endif %}
+		        </div>
+		      </li>
+		    </ul>
+		  </div>
+		</div>
+    </nav>
+    
+    {% block content %}
+    {% endblock %}
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top container">
+    <div class="row">
+        <div class="col-12 col-md">
+        <a href="/">Gift-Thrift Shop</a>
+        <small class="d-block mb-3 text-muted">&copy; 2023-2024</small>
+		<p>Group6solutions Limited</p>
+		<p>Get amazing website designs</p>
+        </div>
+        <div class="col-6 col-md">
+        <h5>Features</h5>
+        <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="{% url 'cool-stuff' %}">Cool stuff</a></li>
+            <li><a class="text-muted" href="{% url 'random_feature' %}">Random feature</a></li>
+            <li><a class="text-muted" href="{% url 'team_feature' %}">Team feature</a></li>
+            <li><a class="text-muted" href="{% url 'developer_stuff' %}">Stuff for developers</a></li>
+            
+        </ul>
+        </div>
+        <div class="col-6 col-md">
+        <h5>Reach us</h5>
+        <ul class="list-unstyled text-small">
+			<li><a class="text-muted" href="tel:+2547-1549-1962">Call Us</a></li>
+			<li><a class="text-muted" href="https://wa.me/+254715491962">WhatsApp</a></li>			
+            <li><a class="text-muted" href="http://www.youtube.com">youtube</a></li>
+            <li><a class="text-muted" href="http://www.facebook.com">facebook</a></li>
+            <li><a class="text-muted" href="http://www.twitter.com">twitter</a></li>
+            <li><a class="text-muted" href="http://www.linkedin.com">LinkedIn</a></li>
+			<li><a class="text-muted" href="mailto: ithaumusau1010@gmail.com">email</a></li>
+        </ul>
+        </div>
+        <div class="col-6 col-md">
+        <h5>About us</h5>
+        <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="{% url 'gt_shop' %}">GT-Shop</a></li>
+            <li><a class="text-muted" href="{% url 'location' %}">Locations</a></li>
+            <li><a class="text-muted" href="{% url 'privacy' %}">Privacy</a></li>
+            <li><a class="text-muted" href="{% url 'terms' %}">Terms</a></li>
+        </ul>
+        </div>
+    </div>
+    </footer>
+</body>
+</html>
